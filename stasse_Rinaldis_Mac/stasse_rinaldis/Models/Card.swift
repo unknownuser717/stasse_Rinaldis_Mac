@@ -17,7 +17,6 @@ struct Card: Identifiable, Codable {
         let medium: String?
     }
 
-    // Convenience for the rest of your views
     var rarityName: String { rarity.name }
 
     var emoji: String {
@@ -43,4 +42,12 @@ struct Card: Identifiable, Codable {
 
 struct CardResponse: Codable {
     let items: [Card]
+}
+
+extension Card {
+    static let mockCards: [Card] = [
+        Card(id: 1, name: "Knight", elixirCost: 3, maxLevel: 14, rarity: Rarity(name: "Common"), maxEvolutionLevel: 1, iconUrl: nil),
+        Card(id: 2, name: "Archers", elixirCost: 3, maxLevel: 14, rarity: Rarity(name: "Common"), maxEvolutionLevel: 1, iconUrl: nil),
+        Card(id: 3, name: "Balloon", elixirCost: 5, maxLevel: 14, rarity: Rarity(name: "Epic"), maxEvolutionLevel: nil, iconUrl: nil),
+    ]
 }
