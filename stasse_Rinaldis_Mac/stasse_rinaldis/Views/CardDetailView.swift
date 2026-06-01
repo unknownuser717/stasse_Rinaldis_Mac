@@ -45,7 +45,7 @@ struct CardDetailView: View {
                 .font(.system(size: 26, weight: .bold))
                 .foregroundColor(Color(red: 0.95, green: 0.7, blue: 0.1))
 
-            Text(card.rarity)
+            Text(card.rarityName)
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 18).padding(.vertical, 6)
@@ -65,7 +65,7 @@ struct CardDetailView: View {
             VStack(spacing: 1) {
                 StatRow(icon: "⚡️", label: "Coût en Élixir",     value: "\(card.elixirCost)")
                 StatRow(icon: "🏆", label: "Niveau maximum",       value: "\(card.maxLevel)")
-                StatRow(icon: "⭐️", label: "Rareté",             value: card.rarity)
+                StatRow(icon: "⭐️", label: "Rareté",             value: card.rarityName)
                 StatRow(icon: "🔄", label: "Niveau évolution max", value: card.maxEvolutionLevel.map { "\($0)" } ?? "—")
             }
             .background(RoundedRectangle(cornerRadius: 20).fill(Color(red: 0.12, green: 0.15, blue: 0.25)))

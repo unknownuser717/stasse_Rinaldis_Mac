@@ -29,7 +29,7 @@ struct CardRow: View {
                     Circle()
                         .fill(card.rarityColor)
                         .frame(width: 8, height: 8)
-                    Text(card.rarity)
+                    Text(card.rarityName)
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.55))
                 }
