@@ -6,12 +6,12 @@ class CardViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var searchText = ""
 
-    // ← PASTE YOUR API KEY HERE
-    private let apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImE1NzUzMzYxLTRlYTgtNGI2YS04YjcwLWYyYzJlMzM2OTg3NSIsImlhdCI6MTc4MDMwNTgxNCwic3ViIjoiZGV2ZWxvcGVyLzdjMzExZjgxLTNiN2QtZmVkYy04NjFhLTA3OGI1YjU4ZGFlYSIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIxOTMuNTAuMTM1LjIwMiJdLCJ0eXBlIjoiY2xpZW50In1dfQ.apZnwKkeCpU9qJPkdieV2nZI4h6cqvGApdPlY7NR9x6MPjWswQwY9yKFwyL5GamUz2LY5NuQEwX695tEh1dezg"
+    // PASTE YOUR API KEY HERE
+    private let apiKey = "PASTE_YOUR_KEY_HERE"
 
     var filtered: [Card] {
         searchText.isEmpty ? cards : cards.filter {
-            $0.name.lowercased().contains(searchText.lowercased())
+            $0.displayName.lowercased().contains(searchText.lowercased())
         }
     }
 
@@ -28,11 +28,15 @@ class CardViewModel: ObservableObject {
         req.setValue("application/json", forHTTPHeaderField: "Accept")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: req)
+            let (data, response) = try await URLSession.shared.data(for: req)
+            if let http = response as? HTTPURLResponse {
+                print("Status code: \(http.statusCode)")
+            }
             let decoded = try JSONDecoder().decode(CardResponse.self, from: data)
             cards = decoded.items
         } catch {
             print("Erreur API: \(error)")
+            print("Erreur detail: \(error.localizedDescription)")
         }
     }
 }

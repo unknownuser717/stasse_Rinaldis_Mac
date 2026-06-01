@@ -2,15 +2,19 @@ import SwiftUI
 
 struct Card: Identifiable, Codable {
     let id: Int
-    let name: String
     let elixirCost: Int
     let maxLevel: Int
     let rarity: String
     let maxEvolutionLevel: Int?
     let iconUrls: IconUrls?
+    let name: [String: String]
 
     struct IconUrls: Codable {
         let medium: String?
+    }
+
+    var displayName: String {
+        name["en"] ?? name.values.first ?? "Unknown"
     }
 
     var rarityName: String { rarity.capitalized }
@@ -42,8 +46,8 @@ struct CardResponse: Codable {
 
 extension Card {
     static let mockCards: [Card] = [
-        Card(id: 1, name: "Knight", elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil),
-        Card(id: 2, name: "Archers", elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil),
-        Card(id: 3, name: "Balloon", elixirCost: 5, maxLevel: 14, rarity: "EPIC", maxEvolutionLevel: nil, iconUrls: nil),
+        Card(id: 1, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: ["en": "Knight"]),
+        Card(id: 2, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: ["en": "Archers"]),
+        Card(id: 3, elixirCost: 5, maxLevel: 14, rarity: "EPIC", maxEvolutionLevel: nil, iconUrls: nil, name: ["en": "Balloon"]),
     ]
 }

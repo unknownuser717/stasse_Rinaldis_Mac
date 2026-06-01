@@ -1,11 +1,5 @@
-//
-//  CardDetailView.swift
-//  stasse_rinaldis
-//
-
 import SwiftUI
 
-// MARK: - Vue détail d'une carte
 struct CardDetailView: View {
     let card: Card
 
@@ -23,14 +17,13 @@ struct CardDetailView: View {
                 .padding(.top, 24)
             }
         }
-        .navigationTitle(card.name)
+        .navigationTitle(card.displayName)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color(red: 0.08, green: 0.10, blue: 0.18), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
 
-    // MARK: - Section hero
     private var heroSection: some View {
         VStack(spacing: 16) {
             ZStack {
@@ -41,7 +34,7 @@ struct CardDetailView: View {
                 Text(card.emoji).font(.system(size: 72))
             }
 
-            Text(card.name)
+            Text(card.displayName)
                 .font(.system(size: 26, weight: .bold))
                 .foregroundColor(Color(red: 0.95, green: 0.7, blue: 0.1))
 
@@ -53,7 +46,6 @@ struct CardDetailView: View {
         }
     }
 
-    // MARK: - Section stats
     private var statsSection: some View {
         VStack(spacing: 0) {
             Text("STATISTIQUES")
@@ -63,10 +55,10 @@ struct CardDetailView: View {
                 .padding(.bottom, 12)
 
             VStack(spacing: 1) {
-                StatRow(icon: "⚡️", label: "Coût en Élixir",     value: "\(card.elixirCost)")
-                StatRow(icon: "🏆", label: "Niveau maximum",       value: "\(card.maxLevel)")
-                StatRow(icon: "⭐️", label: "Rareté",             value: card.rarityName)
-                StatRow(icon: "🔄", label: "Niveau évolution max", value: card.maxEvolutionLevel.map { "\($0)" } ?? "—")
+                StatRow(icon: "⚡️", label: "Cout en Elixir",      value: "\(card.elixirCost)")
+                StatRow(icon: "🏆", label: "Niveau maximum",        value: "\(card.maxLevel)")
+                StatRow(icon: "⭐️", label: "Rarete",              value: card.rarityName)
+                StatRow(icon: "🔄", label: "Niveau evolution max",  value: card.maxEvolutionLevel.map { "\($0)" } ?? "—")
             }
             .background(RoundedRectangle(cornerRadius: 20).fill(Color(red: 0.12, green: 0.15, blue: 0.25)))
             .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -74,7 +66,6 @@ struct CardDetailView: View {
     }
 }
 
-// MARK: - Ligne de stat
 struct StatRow: View {
     let icon: String
     let label: String
@@ -98,6 +89,6 @@ struct StatRow: View {
 
 #Preview {
     NavigationStack {
-        CardDetailView(card: Card.mockCards[7])
+        CardDetailView(card: Card.mockCards[0])
     }
 }
