@@ -7,7 +7,7 @@ class CardViewModel: ObservableObject {
     @Published var searchText = ""
 
     // PASTE YOUR API KEY HERE
-    private let apiKey = "PASTE_YOUR_KEY_HERE"
+    private let apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImE1NzUzMzYxLTRlYTgtNGI2YS04YjcwLWYyYzJlMzM2OTg3NSIsImlhdCI6MTc4MDMwNTgxNCwic3ViIjoiZGV2ZWxvcGVyLzdjMzExZjgxLTNiN2QtZmVkYy04NjFhLTA3OGI1YjU4ZGFlYSIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIxOTMuNTAuMTM1LjIwMiJdLCJ0eXBlIjoiY2xpZW50In1dfQ.apZnwKkeCpU9qJPkdieV2nZI4h6cqvGApdPlY7NR9x6MPjWswQwY9yKFwyL5GamUz2LY5NuQEwX695tEh1dezg"
 
     var filtered: [Card] {
         searchText.isEmpty ? cards : cards.filter {
