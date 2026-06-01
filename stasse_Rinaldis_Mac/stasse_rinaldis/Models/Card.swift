@@ -7,14 +7,23 @@ struct Card: Identifiable, Codable {
     let rarity: String
     let maxEvolutionLevel: Int?
     let iconUrls: IconUrls?
-    let name: [String: String]
+    private let name: AnyCodable?
 
     struct IconUrls: Codable {
         let medium: String?
     }
 
+    struct AnyCodable: Codable {
+        let values: [String: String]
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            values = (try? container.decode([String: String].self)) ?? [:]
+        }
+        func encode(to encoder: Encoder) throws {}
+    }
+
     var displayName: String {
-        name["en"] ?? name.values.first ?? "Unknown"
+        name?.values["en"] ?? name?.values.values.first ?? "Unknown"
     }
 
     var rarityName: String { rarity.capitalized }
@@ -45,9 +54,5 @@ struct CardResponse: Codable {
 }
 
 extension Card {
-    static let mockCards: [Card] = [
-        Card(id: 1, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: ["en": "Knight"]),
-        Card(id: 2, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: ["en": "Archers"]),
-        Card(id: 3, elixirCost: 5, maxLevel: 14, rarity: "EPIC", maxEvolutionLevel: nil, iconUrls: nil, name: ["en": "Balloon"]),
-    ]
+    static let mockCards: [Card] = []
 }
