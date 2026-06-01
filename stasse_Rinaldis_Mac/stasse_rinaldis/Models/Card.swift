@@ -5,22 +5,18 @@ struct Card: Identifiable, Codable {
     let name: String
     let elixirCost: Int
     let maxLevel: Int
-    let rarity: Rarity
+    let rarity: String
     let maxEvolutionLevel: Int?
-    let iconUrl: IconUrl?
+    let iconUrls: IconUrls?
 
-    struct Rarity: Codable {
-        let name: String
-    }
-
-    struct IconUrl: Codable {
+    struct IconUrls: Codable {
         let medium: String?
     }
 
-    var rarityName: String { rarity.name }
+    var rarityName: String { rarity.capitalized }
 
     var emoji: String {
-        switch rarity.name.lowercased() {
+        switch rarity.lowercased() {
         case "legendary": return "👑"
         case "epic":      return "🔮"
         case "rare":      return "💎"
@@ -30,7 +26,7 @@ struct Card: Identifiable, Codable {
     }
 
     var rarityColor: Color {
-        switch rarity.name.lowercased() {
+        switch rarity.lowercased() {
         case "legendary": return Color(red: 0.9, green: 0.5, blue: 0.1)
         case "epic":      return Color(red: 0.6, green: 0.2, blue: 0.9)
         case "rare":      return Color(red: 0.2, green: 0.4, blue: 0.9)
@@ -46,8 +42,8 @@ struct CardResponse: Codable {
 
 extension Card {
     static let mockCards: [Card] = [
-        Card(id: 1, name: "Knight", elixirCost: 3, maxLevel: 14, rarity: Rarity(name: "Common"), maxEvolutionLevel: 1, iconUrl: nil),
-        Card(id: 2, name: "Archers", elixirCost: 3, maxLevel: 14, rarity: Rarity(name: "Common"), maxEvolutionLevel: 1, iconUrl: nil),
-        Card(id: 3, name: "Balloon", elixirCost: 5, maxLevel: 14, rarity: Rarity(name: "Epic"), maxEvolutionLevel: nil, iconUrl: nil),
+        Card(id: 1, name: "Knight", elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil),
+        Card(id: 2, name: "Archers", elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil),
+        Card(id: 3, name: "Balloon", elixirCost: 5, maxLevel: 14, rarity: "EPIC", maxEvolutionLevel: nil, iconUrls: nil),
     ]
 }
