@@ -7,7 +7,7 @@ class CardViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var searchText = ""
 
-    private let apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjJjMjM0N2FhLTk3ODMtNGE3Ni05ODlkLWFiZGYwM2FjYTQzNCIsImlhdCI6MTc4MDMwNzY1Nywic3ViIjoiZGV2ZWxvcGVyLzdjMzExZjgxLTNiN2QtZmVkYy04NjFhLTA3OGI1YjU4ZGFlYSIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIxOTQuMjE0LjE3MS4xMyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.F5BZ206oV5RxnCdUBUjbqubAnBI89qTnyJSVS7210-GBWQByzCvimTpGAR2HkBCNVzRL7dpinK26AW5licsnqA"
+    private let apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImNjOTk4ZjMwLTFiNjctNDc2NC1hMmY0LTdlODRmOGVmNmIyMyIsImlhdCI6MTc4MDU4MjA0MCwic3ViIjoiZGV2ZWxvcGVyLzdjMzExZjgxLTNiN2QtZmVkYy04NjFhLTA3OGI1YjU4ZGFlYSIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI0NS43OS4yMTguNzkiLCIxOTQuMjE0LjE3MS4xMyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.hdSyOTPr8BsoRTFWKzune6SCTLguhc6Xp5WxON4Xg24ke3ncoXKk23KV6BVX0pJu7krwDh-vL2ZXdYfKQZdHQg"
 
     var filtered: [Card] {
         searchText.isEmpty ? cards : cards.filter {
@@ -27,7 +27,7 @@ class CardViewModel: ObservableObject {
     }
 
     private func fetchAPICards() async -> [APICard] {
-        guard let url = URL(string: "https://api.clashroyale.com/v1/cards?limit=200") else { return [] }
+        guard let url = URL(string: "https://proxy.royaleapi.dev/v1/cards?limit=200") else { return [] }
         var req = URLRequest(url: url)
         req.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         req.setValue("application/json", forHTTPHeaderField: "Accept")
