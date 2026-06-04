@@ -25,7 +25,7 @@ struct CardListView: View {
                     .scrollContentBackground(.hidden)
                 }
             }
-            .navigationTitle("⚔️ Clash Royale")
+            .navigationTitle("Clash Royale")
             .navigationBarTitleDisplayMode(.large)
             .toolbarBackground(Color(red: 0.08, green: 0.10, blue: 0.18), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)

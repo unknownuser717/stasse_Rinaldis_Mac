@@ -64,7 +64,7 @@ struct CardDetailView: View {
                 .padding(.bottom, 12)
 
             VStack(spacing: 1) {
-                StatRow(icon: "⚡️", label: "Cout en Elixir",     value: "\(card.elixirCost ?? 0)")
+                StatRow(icon: "🟣", label: "Cout en Elixir", value: "\(card.elixirCost ?? 0)")
                 StatRow(icon: "🏆", label: "Niveau maximum",       value: "\(card.maxLevel)")
                 StatRow(icon: "⚔️", label: "Type",                value: card.type)
                 StatRow(icon: "⭐️", label: "Rarete",             value: card.rarityName)
