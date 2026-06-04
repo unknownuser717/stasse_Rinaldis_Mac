@@ -39,7 +39,7 @@ struct CardRow: View {
             Spacer()
 
             VStack(spacing: 2) {
-                Text("⚡️").font(.system(size: 14))
+                Text("🟣").font(.system(size: 14))
                 Text("\(card.elixirCost ?? 0)")
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(Color(red: 0.75, green: 0.45, blue: 1.0))
