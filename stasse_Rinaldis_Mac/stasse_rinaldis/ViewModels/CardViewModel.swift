@@ -6,13 +6,46 @@ class CardViewModel: ObservableObject {
     @Published var arenas: [Arena] = []
     @Published var isLoading = false
     @Published var searchText = ""
+    @Published var selectedRarity: String? = nil
+    @Published var sortOption: SortOption = .name
+
+    enum SortOption: String, CaseIterable {
+        case name = "Nom"
+        case elixir = "Elixir"
+        case rarity = "Rareté"
+    }
 
     private let apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImNjOTk4ZjMwLTFiNjctNDc2NC1hMmY0LTdlODRmOGVmNmIyMyIsImlhdCI6MTc4MDU4MjA0MCwic3ViIjoiZGV2ZWxvcGVyLzdjMzExZjgxLTNiN2QtZmVkYy04NjFhLTA3OGI1YjU4ZGFlYSIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI0NS43OS4yMTguNzkiLCIxOTQuMjE0LjE3MS4xMyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.hdSyOTPr8BsoRTFWKzune6SCTLguhc6Xp5WxON4Xg24ke3ncoXKk23KV6BVX0pJu7krwDh-vL2ZXdYfKQZdHQg"
 
     var filtered: [Card] {
-        searchText.isEmpty ? cards : cards.filter {
-            $0.name.lowercased().contains(searchText.lowercased())
+        var result = cards
+
+        // Filter by search
+        if !searchText.isEmpty {
+            result = result.filter {
+                $0.name.lowercased().contains(searchText.lowercased())
+            }
         }
+
+        // Filter by rarity
+        if let rarity = selectedRarity {
+            result = result.filter {
+                $0.rarity.lowercased() == rarity.lowercased()
+            }
+        }
+
+        // Sort
+        switch sortOption {
+        case .name:
+            result.sort { $0.name < $1.name }
+        case .elixir:
+            result.sort { ($0.elixirCost ?? 0) < ($1.elixirCost ?? 0) }
+        case .rarity:
+            let order = ["common": 0, "rare": 1, "epic": 2, "legendary": 3, "champion": 4]
+            result.sort { (order[$0.rarity.lowercased()] ?? 0) < (order[$1.rarity.lowercased()] ?? 0) }
+        }
+
+        return result
     }
 
     func load() async {
