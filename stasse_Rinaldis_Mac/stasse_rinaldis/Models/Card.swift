@@ -1,34 +1,18 @@
 import SwiftUI
 
-struct Card: Identifiable, Codable {
+struct Card: Identifiable {
     let id: Int
+    let name: String
     let elixirCost: Int?
     let maxLevel: Int
     let rarity: String
     let maxEvolutionLevel: Int?
-    let iconUrls: IconUrls?
-    let name: AnyCodable?
+    let iconUrl: String?
+    let type: String
+    let description: String
+    let arena: Int
 
-    struct IconUrls: Codable {
-        let medium: String?
-    }
-
-    struct AnyCodable: Codable {
-        let values: [String: String]
-        init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            values = (try? container.decode([String: String].self)) ?? [:]
-        }
-        func encode(to encoder: Encoder) throws {}
-    }
-
-    var displayName: String {
-        name?.values["en"] ?? name?.values.values.first ?? "Unknown"
-    }
-
-    var imageUrl: String {
-        "https://cdn.royaleapi.com/static/img/cards-150/\(id).png"
-    }
+    var imageUrl: String? { iconUrl }
 
     var rarityName: String { rarity.capitalized }
 
@@ -53,14 +37,10 @@ struct Card: Identifiable, Codable {
     }
 }
 
-struct CardResponse: Codable {
-    let items: [Card]
-}
-
 extension Card {
     static let mockCards: [Card] = [
-        Card(id: 26000000, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: nil),
-        Card(id: 26000001, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: nil),
-        Card(id: 26000002, elixirCost: 5, maxLevel: 14, rarity: "EPIC",   maxEvolutionLevel: nil, iconUrls: nil, name: nil),
+        Card(id: 26000000, name: "Knight", elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrl: nil, type: "Troop", description: "A tough melee fighter.", arena: 0),
+        Card(id: 26000001, name: "Archers", elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrl: nil, type: "Troop", description: "A pair of ranged attackers.", arena: 0),
+        Card(id: 28000000, name: "Fireball", elixirCost: 4, maxLevel: 14, rarity: "RARE", maxEvolutionLevel: nil, iconUrl: nil, type: "Spell", description: "Annnnnd... Fireball.", arena: 0),
     ]
 }
