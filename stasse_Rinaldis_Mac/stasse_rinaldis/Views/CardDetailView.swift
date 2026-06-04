@@ -31,7 +31,12 @@ struct CardDetailView: View {
                     .fill(Color(red: 0.12, green: 0.15, blue: 0.25))
                     .frame(width: 140, height: 140)
                     .shadow(color: card.rarityColor.opacity(0.4), radius: 20)
-                Text(card.emoji).font(.system(size: 72))
+                AsyncImage(url: URL(string: card.imageUrl)) { image in
+                    image.resizable().scaledToFit()
+                } placeholder: {
+                    Text(card.emoji).font(.system(size: 72))
+                }
+                .frame(width: 110, height: 110)
             }
 
             Text(card.displayName)
@@ -55,10 +60,10 @@ struct CardDetailView: View {
                 .padding(.bottom, 12)
 
             VStack(spacing: 1) {
-                StatRow(icon: "⚡️", label: "Cout en Elixir",      value: "\(card.elixirCost)")
-                StatRow(icon: "🏆", label: "Niveau maximum",        value: "\(card.maxLevel)")
-                StatRow(icon: "⭐️", label: "Rarete",              value: card.rarityName)
-                StatRow(icon: "🔄", label: "Niveau evolution max",  value: card.maxEvolutionLevel.map { "\($0)" } ?? "—")
+                StatRow(icon: "⚡️", label: "Cout en Elixir",     value: "\(card.elixirCost ?? 0)")
+                StatRow(icon: "🏆", label: "Niveau maximum",       value: "\(card.maxLevel)")
+                StatRow(icon: "⭐️", label: "Rarete",             value: card.rarityName)
+                StatRow(icon: "🔄", label: "Niveau evolution max", value: card.maxEvolutionLevel.map { "\($0)" } ?? "—")
             }
             .background(RoundedRectangle(cornerRadius: 20).fill(Color(red: 0.12, green: 0.15, blue: 0.25)))
             .clipShape(RoundedRectangle(cornerRadius: 20))

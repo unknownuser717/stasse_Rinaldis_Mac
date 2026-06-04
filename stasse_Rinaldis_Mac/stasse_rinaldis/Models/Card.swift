@@ -2,12 +2,12 @@ import SwiftUI
 
 struct Card: Identifiable, Codable {
     let id: Int
-    let elixirCost: Int
+    let elixirCost: Int?
     let maxLevel: Int
     let rarity: String
     let maxEvolutionLevel: Int?
     let iconUrls: IconUrls?
-    private let name: AnyCodable?
+    let name: AnyCodable?
 
     struct IconUrls: Codable {
         let medium: String?
@@ -24,6 +24,10 @@ struct Card: Identifiable, Codable {
 
     var displayName: String {
         name?.values["en"] ?? name?.values.values.first ?? "Unknown"
+    }
+
+    var imageUrl: String {
+        "https://cdn.royaleapi.com/static/img/cards-150/\(id).png"
     }
 
     var rarityName: String { rarity.capitalized }
@@ -54,5 +58,9 @@ struct CardResponse: Codable {
 }
 
 extension Card {
-    static let mockCards: [Card] = []
+    static let mockCards: [Card] = [
+        Card(id: 26000000, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: nil),
+        Card(id: 26000001, elixirCost: 3, maxLevel: 14, rarity: "COMMON", maxEvolutionLevel: 1, iconUrls: nil, name: nil),
+        Card(id: 26000002, elixirCost: 5, maxLevel: 14, rarity: "EPIC",   maxEvolutionLevel: nil, iconUrls: nil, name: nil),
+    ]
 }

@@ -22,7 +22,7 @@ class CardViewModel: ObservableObject {
     }
 
     private func fetchAPI() async {
-        guard let url = URL(string: "https://api.clashroyale.com/v1/cards?limit=200") else { return }
+        guard let url = URL(string: "https://proxy.royaleapi.dev/v1/cards?limit=200") else { return }
         var req = URLRequest(url: url)
         req.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         req.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -36,7 +36,6 @@ class CardViewModel: ObservableObject {
             cards = decoded.items
         } catch {
             print("Erreur API: \(error)")
-            print("Erreur detail: \(error.localizedDescription)")
         }
     }
 }
