@@ -1,22 +1,16 @@
-//
-//  CardDetailView.swift
-//  stasse_rinaldis
-//
-
 import SwiftUI
 
-// MARK: - Vue détail d'une carte
 struct CardDetailView: View {
     let card: Card
 
     var body: some View {
         ZStack {
             Color(red: 0.08, green: 0.10, blue: 0.18).ignoresSafeArea()
-
             ScrollView {
                 VStack(spacing: 24) {
                     heroSection
                     statsSection
+                    descriptionSection
                     Spacer(minLength: 40)
                 }
                 .padding(.horizontal, 20)
@@ -30,7 +24,6 @@ struct CardDetailView: View {
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
 
-    // MARK: - Section hero
     private var heroSection: some View {
         VStack(spacing: 16) {
             ZStack {
@@ -38,14 +31,23 @@ struct CardDetailView: View {
                     .fill(Color(red: 0.12, green: 0.15, blue: 0.25))
                     .frame(width: 140, height: 140)
                     .shadow(color: card.rarityColor.opacity(0.4), radius: 20)
-                Text(card.emoji).font(.system(size: 72))
+                if let imageUrl = card.imageUrl, let url = URL(string: imageUrl) {
+                    AsyncImage(url: url) { image in
+                        image.resizable().scaledToFit()
+                    } placeholder: {
+                        Text(card.emoji).font(.system(size: 72))
+                    }
+                    .frame(width: 110, height: 110)
+                } else {
+                    Text(card.emoji).font(.system(size: 72))
+                }
             }
 
             Text(card.name)
                 .font(.system(size: 26, weight: .bold))
                 .foregroundColor(Color(red: 0.95, green: 0.7, blue: 0.1))
 
-            Text(card.rarity)
+            Text(card.rarityName)
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 18).padding(.vertical, 6)
@@ -53,7 +55,6 @@ struct CardDetailView: View {
         }
     }
 
-    // MARK: - Section stats
     private var statsSection: some View {
         VStack(spacing: 0) {
             Text("STATISTIQUES")
@@ -63,18 +64,36 @@ struct CardDetailView: View {
                 .padding(.bottom, 12)
 
             VStack(spacing: 1) {
-                StatRow(icon: "⚡️", label: "Coût en Élixir",     value: "\(card.elixirCost)")
+                StatRow(icon: "⚡️", label: "Cout en Elixir",     value: "\(card.elixirCost ?? 0)")
                 StatRow(icon: "🏆", label: "Niveau maximum",       value: "\(card.maxLevel)")
-                StatRow(icon: "⭐️", label: "Rareté",             value: card.rarity)
-                StatRow(icon: "🔄", label: "Niveau évolution max", value: card.maxEvolutionLevel.map { "\($0)" } ?? "—")
+                StatRow(icon: "⚔️", label: "Type",                value: card.type)
+                StatRow(icon: "⭐️", label: "Rarete",             value: card.rarityName)
+                StatRow(icon: "🔄", label: "Niveau evolution max", value: card.maxEvolutionLevel.map { "\($0)" } ?? "—")
+                StatRow(icon: "🏟️", label: "Arena",              value: "\(card.arena)")
             }
             .background(RoundedRectangle(cornerRadius: 20).fill(Color(red: 0.12, green: 0.15, blue: 0.25)))
             .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
+
+    private var descriptionSection: some View {
+        VStack(spacing: 0) {
+            Text("DESCRIPTION")
+                .font(.system(size: 12, weight: .bold))
+                .foregroundColor(.white.opacity(0.4))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 12)
+
+            Text(card.description)
+                .font(.system(size: 15))
+                .foregroundColor(.white.opacity(0.8))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(18)
+                .background(RoundedRectangle(cornerRadius: 20).fill(Color(red: 0.12, green: 0.15, blue: 0.25)))
+        }
+    }
 }
 
-// MARK: - Ligne de stat
 struct StatRow: View {
     let icon: String
     let label: String
@@ -98,6 +117,6 @@ struct StatRow: View {
 
 #Preview {
     NavigationStack {
-        CardDetailView(card: Card.mockCards[7])
+        CardDetailView(card: Card.mockCards[0])
     }
 }

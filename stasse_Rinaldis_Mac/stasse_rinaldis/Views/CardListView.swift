@@ -1,11 +1,5 @@
-//
-//  CardListView.swift
-//  stasse_rinaldis
-//
-
 import SwiftUI
 
-// MARK: - Vue liste principale
 struct CardListView: View {
     @StateObject private var vm = CardViewModel()
 

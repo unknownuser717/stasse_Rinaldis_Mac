@@ -1,25 +1,26 @@
-//
-//  CardRow.swift
-//  stasse_rinaldis
-//
-
 import SwiftUI
 
-// MARK: - Cellule d'une carte dans la liste
 struct CardRow: View {
     let card: Card
 
     var body: some View {
         HStack(spacing: 14) {
-            // Icône emoji
             ZStack {
                 RoundedRectangle(cornerRadius: 14)
                     .fill(Color(red: 0.08, green: 0.10, blue: 0.18))
                     .frame(width: 58, height: 58)
-                Text(card.emoji).font(.system(size: 32))
+                if let imageUrl = card.imageUrl, let url = URL(string: imageUrl) {
+                    AsyncImage(url: url) { image in
+                        image.resizable().scaledToFit()
+                    } placeholder: {
+                        Text(card.emoji).font(.system(size: 32))
+                    }
+                    .frame(width: 50, height: 50)
+                } else {
+                    Text(card.emoji).font(.system(size: 32))
+                }
             }
 
-            // Nom + rareté
             VStack(alignment: .leading, spacing: 5) {
                 Text(card.name)
                     .font(.system(size: 16, weight: .bold))
@@ -29,7 +30,7 @@ struct CardRow: View {
                     Circle()
                         .fill(card.rarityColor)
                         .frame(width: 8, height: 8)
-                    Text(card.rarity)
+                    Text(card.rarityName)
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.55))
                 }
@@ -37,10 +38,9 @@ struct CardRow: View {
 
             Spacer()
 
-            // Coût élixir
             VStack(spacing: 2) {
                 Text("⚡️").font(.system(size: 14))
-                Text("\(card.elixirCost)")
+                Text("\(card.elixirCost ?? 0)")
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(Color(red: 0.75, green: 0.45, blue: 1.0))
             }
