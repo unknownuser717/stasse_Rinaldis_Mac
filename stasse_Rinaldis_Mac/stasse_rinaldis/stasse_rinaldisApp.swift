@@ -16,6 +16,11 @@ struct stasse_rinaldisApp: App {
                     .tabItem {
                         Label("Arenas", systemImage: "trophy.fill")
                     }
+
+                StatsView()
+                    .tabItem {
+                        Label("Stats", systemImage: "chart.bar.fill")
+                    }
             }
             .environmentObject(vm)
             .task { await vm.load() }
