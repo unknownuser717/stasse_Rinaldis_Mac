@@ -3,6 +3,7 @@ import Foundation
 @MainActor
 class CardViewModel: ObservableObject {
     @Published var cards: [Card] = []
+    @Published var arenas: [Arena] = []
     @Published var isLoading = false
     @Published var searchText = ""
 
@@ -18,12 +19,13 @@ class CardViewModel: ObservableObject {
         isLoading = true
         async let apiCards = fetchAPICards()
         async let staticCards = fetchStaticCards()
-        let (api, static_) = await (apiCards, staticCards)
+        async let arenaData = fetchArenas()
+        let (api, static_, arenaList) = await (apiCards, staticCards, arenaData)
         cards = merge(api: api, static_: static_)
+        arenas = arenaList
         isLoading = false
     }
 
-    // OFFICIAL API - gets rarity, elixirCost, maxLevel, iconUrls
     private func fetchAPICards() async -> [APICard] {
         guard let url = URL(string: "https://api.clashroyale.com/v1/cards?limit=200") else { return [] }
         var req = URLRequest(url: url)
@@ -42,7 +44,6 @@ class CardViewModel: ObservableObject {
         }
     }
 
-    // STATIC JSON - gets name, type, description, arena
     private func fetchStaticCards() async -> [StaticCard] {
         guard let url = URL(string: "https://royaleapi.github.io/cr-api-data/json/cards.json") else { return [] }
         do {
@@ -54,7 +55,17 @@ class CardViewModel: ObservableObject {
         }
     }
 
-    // MERGE by id
+    private func fetchArenas() async -> [Arena] {
+        guard let url = URL(string: "https://royaleapi.github.io/cr-api-data/json/arenas.json") else { return [] }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return try JSONDecoder().decode([Arena].self, from: data)
+        } catch {
+            print("Arena error: \(error)")
+            return []
+        }
+    }
+
     private func merge(api: [APICard], static_: [StaticCard]) -> [Card] {
         let staticMap = Dictionary(uniqueKeysWithValues: static_.map { ($0.id, $0) })
         return api.compactMap { apiCard in
@@ -75,7 +86,6 @@ class CardViewModel: ObservableObject {
     }
 }
 
-// MARK: - API Models
 struct APIResponse: Codable {
     let items: [APICard]
 }
@@ -93,7 +103,6 @@ struct APICard: Codable {
     }
 }
 
-// MARK: - Static Models
 struct StaticCard: Codable {
     let id: Int
     let key: String
