@@ -6,7 +6,26 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* stasse_rinaldisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A10000000000000000000006 /* stasse_rinaldisWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A10000000000000000000002 /* stasse_rinaldisWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A10000000000000000000007 /* stasse_rinaldisWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		A10000000000000000000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FB55F342FC99A9D005489FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1000000000000000000000A;
+			remoteInfo = stasse_rinaldisWidget;
+		};
+		A10000000000000000000004 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FB55F342FC99A9D005489FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1000000000000000000000B;
+			remoteInfo = stasse_rinaldisWatch;
+		};
 		5FB55F4F2FC99A9E005489FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5FB55F342FC99A9D005489FF /* Project object */;
@@ -24,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A10000000000000000000006 /* stasse_rinaldisWidget.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = stasse_rinaldisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000007 /* stasse_rinaldisWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stasse_rinaldisWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB55F3C2FC99A9D005489FF /* stasse_rinaldis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stasse_rinaldis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB55F4E2FC99A9E005489FF /* stasse_rinaldisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stasse_rinaldisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB55F582FC99A9E005489FF /* stasse_rinaldisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stasse_rinaldisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +66,47 @@
 			path = stasse_rinaldisUITests;
 			sourceTree = "<group>";
 		};
+		A1000000000000000000000C /* stasse_rinaldisShared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = stasse_rinaldisShared;
+			sourceTree = "<group>";
+		};
+		A1000000000000000000000D /* stasse_rinaldisWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = stasse_rinaldisWidget;
+			sourceTree = "<group>";
+		};
+		A1000000000000000000000E /* stasse_rinaldisWatch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = stasse_rinaldisWatch;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A10000000000000000000008 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A10000000000000000000001 /* stasse_rinaldisWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000009 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				A10000000000000000000002 /* stasse_rinaldisWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5FB55F392FC99A9D005489FF /* Frameworks */ = {
@@ -78,6 +139,9 @@
 				5FB55F3E2FC99A9D005489FF /* stasse_rinaldis */,
 				5FB55F512FC99A9E005489FF /* stasse_rinaldisTests */,
 				5FB55F5B2FC99A9E005489FF /* stasse_rinaldisUITests */,
+				A1000000000000000000000C /* stasse_rinaldisShared */,
+				A1000000000000000000000D /* stasse_rinaldisWidget */,
+				A1000000000000000000000E /* stasse_rinaldisWatch */,
 				5FB55F3D2FC99A9D005489FF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +152,8 @@
 				5FB55F3C2FC99A9D005489FF /* stasse_rinaldis.app */,
 				5FB55F4E2FC99A9E005489FF /* stasse_rinaldisTests.xctest */,
 				5FB55F582FC99A9E005489FF /* stasse_rinaldisUITests.xctest */,
+				A10000000000000000000006 /* stasse_rinaldisWidget.appex */,
+				A10000000000000000000007 /* stasse_rinaldisWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,10 +168,14 @@
 				5FB55F382FC99A9D005489FF /* Sources */,
 				5FB55F392FC99A9D005489FF /* Frameworks */,
 				5FB55F3A2FC99A9D005489FF /* Resources */,
+				A10000000000000000000008 /* Embed App Extensions */,
+				A10000000000000000000009 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A10000000000000000000016 /* PBXTargetDependency */,
+				A10000000000000000000017 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				5FB55F3E2FC99A9D005489FF /* stasse_rinaldis */,
@@ -132,6 +202,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				5FB55F512FC99A9E005489FF /* stasse_rinaldisTests */,
+				A1000000000000000000000C /* stasse_rinaldisShared */,
 			);
 			name = stasse_rinaldisTests;
 			packageProductDependencies = (
@@ -163,6 +234,52 @@
 			productReference = 5FB55F582FC99A9E005489FF /* stasse_rinaldisUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A1000000000000000000000A /* stasse_rinaldisWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000010 /* Build configuration list for PBXNativeTarget "stasse_rinaldisWidget" */;
+			buildPhases = (
+				A10000000000000000000018 /* Sources */,
+				A10000000000000000000019 /* Frameworks */,
+				A1000000000000000000001A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A1000000000000000000000C /* stasse_rinaldisShared */,
+				A1000000000000000000000D /* stasse_rinaldisWidget */,
+			);
+			name = stasse_rinaldisWidget;
+			packageProductDependencies = (
+			);
+			productName = stasse_rinaldisWidget;
+			productReference = A10000000000000000000006 /* stasse_rinaldisWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		A1000000000000000000000B /* stasse_rinaldisWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000011 /* Build configuration list for PBXNativeTarget "stasse_rinaldisWatch" */;
+			buildPhases = (
+				A1000000000000000000001B /* Sources */,
+				A1000000000000000000001C /* Frameworks */,
+				A1000000000000000000001D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A1000000000000000000000C /* stasse_rinaldisShared */,
+				A1000000000000000000000E /* stasse_rinaldisWatch */,
+			);
+			name = stasse_rinaldisWatch;
+			packageProductDependencies = (
+			);
+			productName = stasse_rinaldisWatch;
+			productReference = A10000000000000000000007 /* stasse_rinaldisWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +301,12 @@
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 5FB55F3B2FC99A9D005489FF;
 					};
+					A1000000000000000000000A = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					A1000000000000000000000B = {
+						CreatedOnToolsVersion = 16.4;
+					};
 				};
 			};
 			buildConfigurationList = 5FB55F372FC99A9D005489FF /* Build configuration list for PBXProject "stasse_rinaldis" */;
@@ -203,6 +326,8 @@
 				5FB55F3B2FC99A9D005489FF /* stasse_rinaldis */,
 				5FB55F4D2FC99A9E005489FF /* stasse_rinaldisTests */,
 				5FB55F572FC99A9E005489FF /* stasse_rinaldisUITests */,
+				A1000000000000000000000A /* stasse_rinaldisWidget */,
+				A1000000000000000000000B /* stasse_rinaldisWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +348,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5FB55F562FC99A9E005489FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000018 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000019 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1000000000000000000001A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1000000000000000000001B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1000000000000000000001C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1000000000000000000001D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -265,6 +432,16 @@
 			isa = PBXTargetDependency;
 			target = 5FB55F3B2FC99A9D005489FF /* stasse_rinaldis */;
 			targetProxy = 5FB55F592FC99A9E005489FF /* PBXContainerItemProxy */;
+		};
+		A10000000000000000000016 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1000000000000000000000A /* stasse_rinaldisWidget */;
+			targetProxy = A10000000000000000000003 /* PBXContainerItemProxy */;
+		};
+		A10000000000000000000017 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1000000000000000000000B /* stasse_rinaldisWatch */;
+			targetProxy = A10000000000000000000004 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -510,6 +687,96 @@
 			};
 			name = Release;
 		};
+		A10000000000000000000012 /* Widget Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dev.test.app.stasse-rinaldis.widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.widgetkit-extension";
+				INFOPLIST_KEY_NSExtension_NSExtensionPrincipalClass = "$(PRODUCT_MODULE_NAME).CardWidgetBundle";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A10000000000000000000013 /* Widget Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dev.test.app.stasse-rinaldis.widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.widgetkit-extension";
+				INFOPLIST_KEY_NSExtension_NSExtensionPrincipalClass = "$(PRODUCT_MODULE_NAME).CardWidgetBundle";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A10000000000000000000014 /* Watch Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Stasse;
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dev.test.app.stasse-rinaldis.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		A10000000000000000000015 /* Watch Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Stasse;
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dev.test.app.stasse-rinaldis.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -545,6 +812,24 @@
 			buildConfigurations = (
 				5FB55F692FC99A9E005489FF /* Debug */,
 				5FB55F6A2FC99A9E005489FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000000010 /* Build configuration list for PBXNativeTarget "stasse_rinaldisWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000012 /* Widget Debug */,
+				A10000000000000000000013 /* Widget Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000000011 /* Build configuration list for PBXNativeTarget "stasse_rinaldisWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000014 /* Watch Debug */,
+				A10000000000000000000015 /* Watch Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
