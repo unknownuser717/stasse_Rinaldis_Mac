@@ -42,6 +42,16 @@
 		5FB55F582FC99A9E005489FF /* stasse_rinaldisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stasse_rinaldisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A1000000000000000000001F /* Exceptions for "stasse_rinaldisWidget" folder in "stasse_rinaldisWidget" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A1000000000000000000000A /* stasse_rinaldisWidget */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5FB55F3E2FC99A9D005489FF /* stasse_rinaldis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -65,6 +75,9 @@
 		};
 		A1000000000000000000000D /* stasse_rinaldisWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1000000000000000000001F /* Exceptions for "stasse_rinaldisWidget" folder in "stasse_rinaldisWidget" target */,
+			);
 			path = stasse_rinaldisWidget;
 			sourceTree = "<group>";
 		};
@@ -675,7 +688,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dev.test.app.stasse-rinaldis.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.widgetkit-extension";
+				INFOPLIST_FILE = stasse_rinaldisWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Card of the Day";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
@@ -695,7 +709,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dev.test.app.stasse-rinaldis.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.widgetkit-extension";
+				INFOPLIST_FILE = stasse_rinaldisWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Card of the Day";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;
