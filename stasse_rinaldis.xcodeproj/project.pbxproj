@@ -50,11 +50,21 @@
 			);
 			target = A1000000000000000000000A /* stasse_rinaldisWidget */;
 		};
+		A10000000000000000000020 /* Exceptions for nested project copy in "stasse_rinaldis" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				stasse_rinaldis,
+			);
+			target = 5FB55F3B2FC99A9D005489FF /* stasse_rinaldis */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5FB55F3E2FC99A9D005489FF /* stasse_rinaldis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A10000000000000000000020 /* Exceptions for nested project copy in "stasse_rinaldis" target */,
+			);
 			path = stasse_rinaldis;
 			sourceTree = "<group>";
 		};
