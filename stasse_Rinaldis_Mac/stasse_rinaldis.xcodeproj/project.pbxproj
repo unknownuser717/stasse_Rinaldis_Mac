@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A10000000000000000000001 /* stasse_rinaldisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A10000000000000000000006 /* stasse_rinaldisWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A10000000000000000000002 /* stasse_rinaldisWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A10000000000000000000007 /* stasse_rinaldisWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -18,13 +17,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A1000000000000000000000A;
 			remoteInfo = stasse_rinaldisWidget;
-		};
-		A10000000000000000000004 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FB55F342FC99A9D005489FF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1000000000000000000000B;
-			remoteInfo = stasse_rinaldisWatch;
 		};
 		5FB55F4F2FC99A9E005489FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -95,17 +87,6 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A10000000000000000000009 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				A10000000000000000000002 /* stasse_rinaldisWatch.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,13 +150,11 @@
 				5FB55F392FC99A9D005489FF /* Frameworks */,
 				5FB55F3A2FC99A9D005489FF /* Resources */,
 				A10000000000000000000008 /* Embed App Extensions */,
-				A10000000000000000000009 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A10000000000000000000016 /* PBXTargetDependency */,
-				A10000000000000000000017 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				5FB55F3E2FC99A9D005489FF /* stasse_rinaldis */,
@@ -437,11 +416,6 @@
 			isa = PBXTargetDependency;
 			target = A1000000000000000000000A /* stasse_rinaldisWidget */;
 			targetProxy = A10000000000000000000003 /* PBXContainerItemProxy */;
-		};
-		A10000000000000000000017 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1000000000000000000000B /* stasse_rinaldisWatch */;
-			targetProxy = A10000000000000000000004 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
