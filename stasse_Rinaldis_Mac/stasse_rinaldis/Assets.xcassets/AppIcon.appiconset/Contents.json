@@ -5,30 +5,6 @@
       "platform" : "ios",
       "size" : "1024x1024",
       "filename" : "app-icon-default.png"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "idiom" : "universal",
-      "platform" : "ios",
-      "size" : "1024x1024",
-      "filename" : "app-icon-dark.png"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "tinted"
-        }
-      ],
-      "idiom" : "universal",
-      "platform" : "ios",
-      "size" : "1024x1024",
-      "filename" : "app-icon-tinted.png"
     }
   ],
   "info" : {
