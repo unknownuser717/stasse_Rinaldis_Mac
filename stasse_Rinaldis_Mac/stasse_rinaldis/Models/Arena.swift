@@ -39,3 +39,11 @@ struct Arena: Identifiable, Codable {
         }
     }
 }
+
+extension Arena {
+    static let mockArenas: [Arena] = [
+        Arena(id: 1, key: "training_camp", title: "Training Camp", subtitle: "Training Camp", arenaId: 0, trophyLimit: 0, isInUse: true),
+        Arena(id: 2, key: "bone_pit", title: "Bone Pit", subtitle: "Bone Pit", arenaId: 1, trophyLimit: 300, isInUse: true),
+        Arena(id: 3, key: "unused_arena", title: "Unused Arena", subtitle: "Unused Arena", arenaId: 2, trophyLimit: 600, isInUse: false),
+    ]
+}
