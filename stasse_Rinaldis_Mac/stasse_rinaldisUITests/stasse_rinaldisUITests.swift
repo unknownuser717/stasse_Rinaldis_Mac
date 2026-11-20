@@ -23,12 +23,20 @@ final class stasse_rinaldisUITests: XCTestCase {
     }
 
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testMainTabsAreAvailable() throws {
         let app = XCUIApplication()
         app.launch()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let cardsTab = app.tabBars.buttons["Cards"]
+        let arenasTab = app.tabBars.buttons["Arenas"]
+        let statsTab = app.tabBars.buttons["Stats"]
+
+        XCTAssertTrue(cardsTab.waitForExistence(timeout: 5))
+        XCTAssertTrue(arenasTab.exists)
+        XCTAssertTrue(statsTab.exists)
+
+        statsTab.tap()
+        XCTAssertTrue(app.staticTexts["Total Cartes"].waitForExistence(timeout: 5))
     }
 
     @MainActor
