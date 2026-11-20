@@ -33,6 +33,28 @@ The widget and the Watch app load the card catalog on their own; they do not dep
 2. Select the `stasse_rinaldis` scheme and an iPhone simulator.
 3. Run with **Cmd+R**.
 
+## Authentification (Firebase)
+
+L'app demande une connexion avant d'afficher les cartes. Deux modes, tous les deux gratuits (offre Spark de Firebase) :
+
+- email / mot de passe (inscription, connexion, mot de passe oublié, déconnexion) ;
+- Google Sign-In.
+
+Sign in with Apple n'est pas inclus : il exige l'Apple Developer Program payant.
+
+Le code se trouve dans `stasse_rinaldis/Auth/` (`AuthManager`, `AuthView`, `AccountView`, `FirebaseSetup`). Les packages `FirebaseCore`, `FirebaseAuth`, `GoogleSignIn` et `GoogleSignInSwift` sont déjà déclarés dans le projet (Swift Package Manager), ainsi que le flag `-ObjC`.
+
+### Configuration (une seule fois)
+
+1. Sur <https://console.firebase.google.com>, créez un projet (inutile d'activer Google Analytics).
+2. Ajoutez une app iOS avec le Bundle ID `com.dev.test.app.stasse-rinaldis`.
+3. Dans **Authentication → Sign-in method**, activez **E-mail/Mot de passe** puis **Google**.
+4. Téléchargez `GoogleService-Info.plist` **après** avoir activé Google, et glissez-le dans le dossier `stasse_rinaldis/` dans Xcode (target `stasse_rinaldis` cochée). Le nom doit être exactement `GoogleService-Info.plist`.
+5. Dans Xcode : target `stasse_rinaldis` → **Info** → **URL Types** → **+**, et collez dans **URL Schemes** la valeur `REVERSED_CLIENT_ID` du plist (elle commence par `com.googleusercontent.apps.`).
+6. **Product → Clean Build Folder**, puis lancez l'app.
+
+Sans le plist, l'app ne plante pas : l'écran de connexion affiche un message demandant de l'ajouter. Les tests UI (`-ui-testing`) contournent la connexion.
+
 ## Tests
 
 Run all tests with **Cmd+U**, or from the terminal:
