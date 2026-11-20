@@ -23,7 +23,14 @@ struct stasse_rinaldisApp: App {
                     }
             }
             .environmentObject(vm)
-            .task { await vm.load() }
+            .task {
+                if ProcessInfo.processInfo.arguments.contains("-ui-testing") {
+                    vm.cards = Card.mockCards
+                    vm.arenas = Arena.mockArenas
+                } else {
+                    await vm.load()
+                }
+            }
             .tint(Color(red: 0.95, green: 0.7, blue: 0.1))
         }
     }

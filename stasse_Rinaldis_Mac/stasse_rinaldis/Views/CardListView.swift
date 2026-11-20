@@ -43,6 +43,7 @@ struct CardListView: View {
                                 }
                             }
                             .pickerStyle(.segmented)
+                            .accessibilityIdentifier("card-sort-picker")
                         }
                         .padding(.horizontal, 16)
                         .padding(.bottom, 8)
@@ -51,6 +52,7 @@ struct CardListView: View {
                             NavigationLink(destination: CardDetailView(card: card)) {
                                 CardRow(card: card)
                             }
+                            .accessibilityIdentifier("card-row-\(card.id)")
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
@@ -87,6 +89,7 @@ struct FilterChip: View {
                         .fill(isSelected ? Color(red: 0.95, green: 0.7, blue: 0.1) : Color(red: 0.2, green: 0.23, blue: 0.35))
                 )
         }
+        .accessibilityIdentifier("rarity-filter-\(label.lowercased())")
     }
 }
 

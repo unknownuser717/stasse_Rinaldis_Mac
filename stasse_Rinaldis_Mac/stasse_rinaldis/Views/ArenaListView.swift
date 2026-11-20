@@ -21,6 +21,7 @@ struct ArenaListView: View {
                         NavigationLink(destination: ArenaDetailView(arena: arena)) {
                             ArenaRow(arena: arena)
                         }
+                        .accessibilityIdentifier("arena-row-\(arena.id)")
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
                         .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
