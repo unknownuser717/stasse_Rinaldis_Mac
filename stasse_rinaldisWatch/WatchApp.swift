@@ -16,30 +16,6 @@ struct StasseWatchApp: App {
     }
 }
 
-@MainActor
-final class WatchCatalogModel: ObservableObject {
-    @Published private(set) var cards: [CatalogCard] = []
-    @Published private(set) var errorMessage: String?
-    @Published private(set) var isLoading = false
-
-    var averageElixir: Double {
-        let costs = cards.compactMap(\.elixir)
-        guard !costs.isEmpty else { return 0 }
-        return Double(costs.reduce(0, +)) / Double(costs.count)
-    }
-
-    func load() async {
-        isLoading = true
-        errorMessage = nil
-        defer { isLoading = false }
-        do {
-            cards = try await CardCatalog.load()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-}
-
 private struct WatchCardList: View {
     @ObservedObject var catalog: WatchCatalogModel
 
@@ -106,7 +82,6 @@ private struct WatchCardDetail: View {
 
 private struct WatchStats: View {
     @ObservedObject var catalog: WatchCatalogModel
-    private let rarities = ["Common", "Rare", "Epic", "Legendary", "Champion"]
 
     var body: some View {
         NavigationStack {
@@ -114,9 +89,8 @@ private struct WatchStats: View {
                 LabeledContent("Cards", value: "\(catalog.cards.count)")
                 LabeledContent("Avg. elixir", value: String(format: "%.1f", catalog.averageElixir))
                 Section("By rarity") {
-                    ForEach(rarities, id: \.self) { rarity in
-                        let count = catalog.cards.filter { $0.rarity.caseInsensitiveCompare(rarity) == .orderedSame }.count
-                        LabeledContent(rarity, value: "\(count)")
+                    ForEach(WatchCatalogModel.rarities, id: \.self) { rarity in
+                        LabeledContent(rarity, value: "\(catalog.count(rarity: rarity))")
                     }
                 }
             }
