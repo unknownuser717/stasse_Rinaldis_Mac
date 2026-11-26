@@ -1,10 +1,14 @@
 import SwiftUI
+import UIKit
 import WidgetKit
 
 struct CardWidgetEntry: TimelineEntry {
     let date: Date
     let card: CatalogCard?
     let errorMessage: String?
+    /// Image de la carte, déjà téléchargée : un widget ne peut pas charger
+    /// d'image lui-même (AsyncImage y reste bloqué sur le placeholder).
+    var image: UIImage? = nil
 }
 
 struct CardWidgetProvider: TimelineProvider {
@@ -36,9 +40,26 @@ struct CardWidgetProvider: TimelineProvider {
             guard let card = CatalogCard.featured(in: cards, on: .now) else {
                 return CardWidgetEntry(date: .now, card: nil, errorMessage: "No cards were found.")
             }
-            return CardWidgetEntry(date: .now, card: card, errorMessage: nil)
+            let image = await Self.loadImage(for: card)
+            return CardWidgetEntry(date: .now, card: card, errorMessage: nil, image: image)
         } catch {
             return CardWidgetEntry(date: .now, card: nil, errorMessage: error.localizedDescription)
+        }
+    }
+
+    /// Télécharge l'image de la carte et la réduit, pour rester sous la limite
+    /// de mémoire des widgets. Renvoie `nil` en cas d'échec (le widget affiche
+    /// alors l'icône de remplacement, sans erreur).
+    private static func loadImage(for card: CatalogCard) async -> UIImage? {
+        guard let url = card.imageURL else { return nil }
+        do {
+            let request = URLRequest(url: url, timeoutInterval: 10)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode),
+                  let image = UIImage(data: data) else { return nil }
+            return await image.byPreparingThumbnail(ofSize: CGSize(width: 120, height: 144)) ?? image
+        } catch {
+            return nil
         }
     }
 }
@@ -55,15 +76,17 @@ struct CardWidgetView: View {
             if let card = entry.card {
                 let elixir = card.elixir.map { String($0) } ?? "—"
                 HStack(spacing: 10) {
-                    if let imageURL = card.imageURL {
-                        AsyncImage(url: imageURL) { image in
-                            image.resizable().scaledToFit()
-                        } placeholder: {
+                    Group {
+                        if let image = entry.image {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                        } else {
                             Image(systemName: "rectangle.portrait")
                                 .foregroundStyle(.secondary)
                         }
-                        .frame(width: 48, height: 48)
                     }
+                    .frame(width: 48, height: 48)
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(card.name)
