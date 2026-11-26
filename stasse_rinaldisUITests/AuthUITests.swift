@@ -66,6 +66,7 @@ final class AuthUITests: XCTestCase {
         let app = launchApp()
         XCTAssertTrue(emailField(in: app).waitForExistence(timeout: 5))
         app.segmentedControls["auth-mode-picker"].buttons["Inscription"].tap()
+        XCTAssertTrue(app.secureTextFields["auth-password-confirm"].waitForExistence(timeout: 2))
         fill(app, email: "test@test.com", password: "123456")
         type("654321\n", into: app.secureTextFields["auth-password-confirm"])
 

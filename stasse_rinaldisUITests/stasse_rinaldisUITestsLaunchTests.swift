@@ -23,7 +23,9 @@ final class stasse_rinaldisUITestsLaunchTests: XCTestCase {
         app.launchArguments = ["-ui-testing"]
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["Knight"].waitForExistence(timeout: 5))
+        // La ligne de carte est un seul bouton (NavigationLink) : son texte n'est pas
+        // toujours exposé comme un staticText séparé. On utilise son identifiant.
+        XCTAssertTrue(app.descendants(matching: .any)["card-row-26000000"].waitForExistence(timeout: 10))
 
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Launch Screen"

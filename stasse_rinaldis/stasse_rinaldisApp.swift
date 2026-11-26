@@ -12,7 +12,8 @@ struct stasse_rinaldisApp: App {
     private static let isAuthUITesting = ProcessInfo.processInfo.arguments.contains("-ui-testing-auth")
 
     init() {
-        let configured = Self.isAuthUITesting ? false : FirebaseSetup.configureIfPossible()
+        // En tests UI, Firebase n'est pas démarré : lancement plus rapide et hors ligne.
+        let configured = (Self.isUITesting || Self.isAuthUITesting) ? false : FirebaseSetup.configureIfPossible()
         _auth = StateObject(wrappedValue: AuthManager(
             isFirebaseConfigured: configured,
             bypassForUITests: Self.isUITesting && !Self.isAuthUITesting

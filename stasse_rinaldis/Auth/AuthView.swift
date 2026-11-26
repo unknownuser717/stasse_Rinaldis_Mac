@@ -11,6 +11,10 @@ struct AuthView: View {
     @State private var confirmPassword = ""
     @State private var localError: String?
 
+    /// Pendant les tests UI, on coupe le remplissage automatique d'iOS
+    /// (« mot de passe fort ») qui remplace ce que le test tape.
+    private static let disablesAutofill = ProcessInfo.processInfo.arguments.contains("-ui-testing-auth")
+
     private let background = Color(red: 0.08, green: 0.10, blue: 0.18)
     private let gold = Color(red: 0.95, green: 0.7, blue: 0.1)
 
@@ -43,20 +47,20 @@ struct AuthView: View {
                         field {
                             TextField("", text: $email, prompt: prompt("Email"))
                                 .keyboardType(.emailAddress)
-                                .textContentType(.emailAddress)
+                                .textContentType(Self.disablesAutofill ? nil : .emailAddress)
                                 .textInputAutocapitalization(.never)
                                 .autocorrectionDisabled()
                                 .accessibilityIdentifier("auth-email")
                         }
                         field {
                             SecureField("", text: $password, prompt: prompt("Mot de passe"))
-                                .textContentType(mode == .signUp ? .newPassword : .password)
+                                .textContentType(Self.disablesAutofill ? nil : (mode == .signUp ? .newPassword : .password))
                                 .accessibilityIdentifier("auth-password")
                         }
                         if mode == .signUp {
                             field {
                                 SecureField("", text: $confirmPassword, prompt: prompt("Confirmer le mot de passe"))
-                                    .textContentType(.newPassword)
+                                    .textContentType(Self.disablesAutofill ? nil : .newPassword)
                                     .accessibilityIdentifier("auth-password-confirm")
                             }
                         }
