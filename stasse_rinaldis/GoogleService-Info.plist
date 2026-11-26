@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>965440251358-p71tra1ptd4utbaq4sciop4lptr0co7g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.965440251358-p71tra1ptd4utbaq4sciop4lptr0co7g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD5KVHEAO8ynrPmewO9Bk25WKxt4kmhSiQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>965440251358</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dev.test.app.stasse-rinaldis</string>
+	<key>PROJECT_ID</key>
+	<string>stasse-rinaldis</string>
+	<key>STORAGE_BUCKET</key>
+	<string>stasse-rinaldis.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:965440251358:ios:8fc0643685b191a626294f</string>
+</dict>
+</plist>
