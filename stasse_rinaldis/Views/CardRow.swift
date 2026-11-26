@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CardRow: View {
     let card: Card
+    var isFavorite: Bool = false
 
     var body: some View {
         HStack(spacing: 14) {
@@ -33,6 +34,12 @@ struct CardRow: View {
                     Text(card.rarityName)
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.55))
+                    if isFavorite {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 11))
+                            .foregroundColor(Color(red: 0.95, green: 0.7, blue: 0.1))
+                            .accessibilityIdentifier("card-favorite-star-\(card.id)")
+                    }
                 }
             }
 

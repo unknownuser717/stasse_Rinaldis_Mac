@@ -19,8 +19,12 @@ struct CardListView: View {
                         // RARITY FILTER
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 8) {
-                                FilterChip(label: "Tous", isSelected: vm.selectedRarity == nil) {
+                                FilterChip(label: "Tous", isSelected: vm.selectedRarity == nil && !vm.showFavoritesOnly) {
                                     vm.selectedRarity = nil
+                                    vm.showFavoritesOnly = false
+                                }
+                                FilterChip(label: "Favoris", isSelected: vm.showFavoritesOnly) {
+                                    vm.showFavoritesOnly.toggle()
                                 }
                                 ForEach(rarities, id: \.self) { rarity in
                                     FilterChip(label: rarity, isSelected: vm.selectedRarity == rarity) {
@@ -50,7 +54,7 @@ struct CardListView: View {
 
                         List(vm.filtered) { card in
                             NavigationLink(destination: CardDetailView(card: card)) {
-                                CardRow(card: card)
+                                CardRow(card: card, isFavorite: vm.isFavorite(card))
                             }
                             .accessibilityIdentifier("card-row-\(card.id)")
                             .listRowBackground(Color.clear)

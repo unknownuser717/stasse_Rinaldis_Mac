@@ -195,6 +195,39 @@ struct stasse_rinaldisTests {
         #expect(card.imageURL == expectedURL)
     }
 
+    @Test @MainActor func favoriteToggleUpdatesStateAndFavoritesFilter() {
+        UserDefaults.standard.removeObject(forKey: "favorite-card-ids")
+        let viewModel = CardViewModel()
+        viewModel.cards = [
+            makeCard(id: 1, name: "Knight"),
+            makeCard(id: 2, name: "Archers"),
+        ]
+
+        viewModel.toggleFavorite(makeCard(id: 1, name: "Knight"))
+        #expect(viewModel.isFavorite(makeCard(id: 1, name: "Knight")))
+        #expect(!viewModel.isFavorite(makeCard(id: 2, name: "Archers")))
+
+        viewModel.showFavoritesOnly = true
+        #expect(viewModel.filtered.map(\.name) == ["Knight"])
+
+        viewModel.toggleFavorite(makeCard(id: 1, name: "Knight"))
+        #expect(viewModel.filtered.isEmpty)
+    }
+
+    @Test @MainActor func favoritesPersistAcrossViewModels() {
+        UserDefaults.standard.removeObject(forKey: "favorite-card-ids")
+
+        let first = CardViewModel()
+        first.toggleFavorite(makeCard(id: 42, name: "Persist"))
+        #expect(first.isFavorite(makeCard(id: 42, name: "Persist")))
+
+        let second = CardViewModel()
+        #expect(second.isFavorite(makeCard(id: 42, name: "Persist")))
+
+        second.toggleFavorite(makeCard(id: 42, name: "Persist"))
+        #expect(!second.isFavorite(makeCard(id: 42, name: "Persist")))
+    }
+
     @MainActor
     private func makeViewModel() -> CardViewModel {
         let viewModel = CardViewModel()

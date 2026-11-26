@@ -8,11 +8,21 @@ class CardViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var selectedRarity: String? = nil
     @Published var sortOption: SortOption = .name
+    @Published var showFavoritesOnly = false
+    @Published private(set) var favoriteIDs: Set<Int> = []
 
     enum SortOption: String, CaseIterable {
         case name = "Nom"
         case elixir = "Elixir"
         case rarity = "Rareté"
+    }
+
+    private static let favoritesKey = "favorite-card-ids"
+
+    init() {
+        if let stored = UserDefaults.standard.array(forKey: Self.favoritesKey) as? [Int] {
+            favoriteIDs = Set(stored)
+        }
     }
 
     private let apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImNjOTk4ZjMwLTFiNjctNDc2NC1hMmY0LTdlODRmOGVmNmIyMyIsImlhdCI6MTc4MDU4MjA0MCwic3ViIjoiZGV2ZWxvcGVyLzdjMzExZjgxLTNiN2QtZmVkYy04NjFhLTA3OGI1YjU4ZGFlYSIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI0NS43OS4yMTguNzkiLCIxOTQuMjE0LjE3MS4xMyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.hdSyOTPr8BsoRTFWKzune6SCTLguhc6Xp5WxON4Xg24ke3ncoXKk23KV6BVX0pJu7krwDh-vL2ZXdYfKQZdHQg"
@@ -34,6 +44,11 @@ class CardViewModel: ObservableObject {
             }
         }
 
+        // Filter by favorites
+        if showFavoritesOnly {
+            result = result.filter { favoriteIDs.contains($0.id) }
+        }
+
         // Sort
         switch sortOption {
         case .name:
@@ -46,6 +61,19 @@ class CardViewModel: ObservableObject {
         }
 
         return result
+    }
+
+    func isFavorite(_ card: Card) -> Bool {
+        favoriteIDs.contains(card.id)
+    }
+
+    func toggleFavorite(_ card: Card) {
+        if favoriteIDs.contains(card.id) {
+            favoriteIDs.remove(card.id)
+        } else {
+            favoriteIDs.insert(card.id)
+        }
+        UserDefaults.standard.set(Array(favoriteIDs).sorted(), forKey: Self.favoritesKey)
     }
 
     func load() async {

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CardDetailView: View {
     let card: Card
+    @EnvironmentObject var vm: CardViewModel
 
     var body: some View {
         ZStack {
@@ -22,6 +23,17 @@ struct CardDetailView: View {
         .toolbarBackground(Color(red: 0.08, green: 0.10, blue: 0.18), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    vm.toggleFavorite(card)
+                } label: {
+                    Image(systemName: vm.isFavorite(card) ? "star.fill" : "star")
+                        .foregroundColor(Color(red: 0.95, green: 0.7, blue: 0.1))
+                }
+                .accessibilityIdentifier("favorite-toggle")
+            }
+        }
     }
 
     private var heroSection: some View {
@@ -118,5 +130,6 @@ struct StatRow: View {
 #Preview {
     NavigationStack {
         CardDetailView(card: Card.mockCards[0])
+            .environmentObject(CardViewModel())
     }
 }
