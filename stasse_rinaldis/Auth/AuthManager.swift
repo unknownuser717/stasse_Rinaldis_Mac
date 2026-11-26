@@ -124,7 +124,8 @@ final class AuthManager: ObservableObject {
         }
     }
 
-    private static func message(for error: Error) -> String {
+    /// Traduit une erreur Firebase en message français (interne pour les tests).
+    static func message(for error: Error) -> String {
         if let error = error as? AuthError { return error.localizedDescription }
 
         let nsError = error as NSError

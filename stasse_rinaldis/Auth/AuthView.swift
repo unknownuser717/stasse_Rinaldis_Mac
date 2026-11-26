@@ -30,7 +30,7 @@ struct AuthView: View {
 
                     if !auth.isFirebaseConfigured {
                         notice("Firebase n'est pas encore configuré. Ajoutez GoogleService-Info.plist à la target stasse_rinaldis (voir README).",
-                               color: .orange)
+                               color: .orange, id: "auth-config-warning")
                     }
 
                     Picker("Mode", selection: $mode) {
@@ -146,7 +146,7 @@ struct AuthView: View {
         Text(text).foregroundColor(.white.opacity(0.4))
     }
 
-    private func notice(_ text: String, color: Color) -> some View {
+    private func notice(_ text: String, color: Color, id: String = "auth-message") -> some View {
         Text(text)
             .font(.system(size: 13, weight: .medium))
             .foregroundColor(color)
@@ -155,7 +155,7 @@ struct AuthView: View {
             .padding(12)
             .background(color.opacity(0.12))
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .accessibilityIdentifier("auth-message")
+            .accessibilityIdentifier(id)
     }
 
     // MARK: - Actions

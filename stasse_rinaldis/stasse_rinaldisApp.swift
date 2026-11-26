@@ -7,12 +7,15 @@ struct stasse_rinaldisApp: App {
     @StateObject private var auth: AuthManager
 
     private static let isUITesting = ProcessInfo.processInfo.arguments.contains("-ui-testing")
+    /// Tests UI de l'écran de connexion : affiche AuthView sans Firebase,
+    /// pour des tests hors ligne et toujours dans le même état.
+    private static let isAuthUITesting = ProcessInfo.processInfo.arguments.contains("-ui-testing-auth")
 
     init() {
-        let configured = FirebaseSetup.configureIfPossible()
+        let configured = Self.isAuthUITesting ? false : FirebaseSetup.configureIfPossible()
         _auth = StateObject(wrappedValue: AuthManager(
             isFirebaseConfigured: configured,
-            bypassForUITests: Self.isUITesting
+            bypassForUITests: Self.isUITesting && !Self.isAuthUITesting
         ))
     }
 

@@ -57,6 +57,9 @@ Sans le plist, l'app ne plante pas : l'écran de connexion affiche un message de
 
 ## Tests
 
+- `stasse_rinaldisTests` (unitaires) : cartes et filtres, carte du jour, modèle de l'Apple Watch (`WatchCatalogModelTests`), logique du widget (`FeaturedCardLoaderTests`) et connexion Firebase (`AuthManagerTests`). Aucun test n'utilise le réseau.
+- `stasse_rinaldisUITests` (interface) : navigation dans l'app (lancée avec `-ui-testing`, sans écran de connexion) et écran de connexion (`AuthUITests`, lancée avec `-ui-testing-auth`, sans Firebase ni vrai compte).
+
 Run all tests with **Cmd+U**, or from the terminal:
 
 ```
