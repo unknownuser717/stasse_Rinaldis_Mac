@@ -54,11 +54,21 @@
 			);
 			target = A1000000000000000000000A /* stasse_rinaldisWidget */;
 		};
+		B20000000000000000000030 /* Exceptions for "stasse_rinaldis" folder in "stasse_rinaldis" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5FB55F3B2FC99A9D005489FF /* stasse_rinaldis */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5FB55F3E2FC99A9D005489FF /* stasse_rinaldis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B20000000000000000000030 /* Exceptions for "stasse_rinaldis" folder in "stasse_rinaldis" target */,
+			);
 			path = stasse_rinaldis;
 			sourceTree = "<group>";
 		};
@@ -577,6 +587,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = stasse_rinaldis/Info.plist;
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -609,6 +620,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = stasse_rinaldis/Info.plist;
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
